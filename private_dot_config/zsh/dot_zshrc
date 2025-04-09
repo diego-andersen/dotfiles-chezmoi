@@ -17,6 +17,9 @@ if [ "$TERM" != "linux" ]; then
         fzf
     )
 
+    # Other settings
+    HIST_STAMPS="%Y-%m-%d %H:%M:%S"
+
     source $ZSH/oh-my-zsh.sh
 fi
 
