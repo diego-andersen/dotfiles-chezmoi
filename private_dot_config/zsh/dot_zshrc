@@ -1,5 +1,5 @@
 # Fix $PATH
-export PATH=$HOME/.npm-global/bin:$HOME/bin:$PATH
+export PATH=$HOME/.npm-global/bin:$HOME/.local/bin:$HOME/bin:$PATH
 
 # Don't use oh-my-zsh on TTY (.psf fonts can't render most things)
 if [ "$TERM" != "linux" ]; then
@@ -12,6 +12,7 @@ if [ "$TERM" != "linux" ]; then
 
     # Plugins
     plugins=(
+        colored-man-pages
         gitfast
         fzf
     )
@@ -34,17 +35,15 @@ else
   export EDITOR=nvim
 fi
 
-# Ranger config
-export RANGER_LOAD_DEFAULT_RC=FALSE
-
-# bat comnfig
-export BAT_THEME=ansi
+# Env variables
+source $ZDOTDIR/env_variables.zsh
 
 # Aliases
-source $ZDOTDIR/aliases
-
-# Env variables
-source $ZDOTDIR/env_variables
+source $ZDOTDIR/aliases.zsh
 
 # Initialize fzf
-[ -f $HOME/fzf.zsh ] && source $HOME/.fzf.zsh
+source <(fzf --zsh)
+
+# Initialize direnv
+eval "$(direnv hook zsh)"
+
